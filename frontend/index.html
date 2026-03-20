@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manifold Desktop</title>
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/layout.css">
+    <link rel="stylesheet" href="styles/chat.css">
+    <link rel="stylesheet" href="styles/terminal.css">
+    <link rel="stylesheet" href="styles/settings.css">
+    <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="styles/search.css">
+    <link rel="stylesheet" href="styles/compare.css">
+    <link rel="stylesheet" href="vendor/highlight-github-dark.min.css">
+</head>
+<body>
+    <div id="app">
+        <div id="tab-bar"></div>
+        <div id="main-area">
+            <div id="side-panel"></div>
+            <div id="tab-content"></div>
+        </div>
+        <div id="input-bar"></div>
+    </div>
+    <div id="toast-container" class="toast-container"></div>
+    <script src="vendor/marked.min.js"></script>
+    <script src="vendor/highlight.min.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
