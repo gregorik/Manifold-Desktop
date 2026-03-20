@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Manifold.Core">
+      <UniqueIdentifier>{b1a2c3d4-0001-4000-a001-000000000001}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manifold.Core\Providers">
+      <UniqueIdentifier>{b1a2c3d4-0002-4000-a002-000000000002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manifold.Core\MCP">
+      <UniqueIdentifier>{b1a2c3d4-0003-4000-a003-000000000003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manifold.Core\Plugins">
+      <UniqueIdentifier>{b1a2c3d4-0004-4000-a004-000000000004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{b1a2c3d4-0005-4000-a005-000000000005}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="App.xaml.h" />
+    <ClInclude Include="MainWindow.xaml.h" />
+    <ClInclude Include="Manifold.Core\TerminalTypes.h">
+      <Filter>Manifold.Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\IProcessManager.h">
+      <Filter>Manifold.Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\ProcessManager.h">
+      <Filter>Manifold.Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\ScopedHandle.h">
+      <Filter>Manifold.Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\TerminalEmulator.h">
+      <Filter>Manifold.Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\SettingsManager.h">
+      <Filter>Manifold.Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\CredentialManager.h">
+      <Filter>Manifold.Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\SessionManager.h">
+      <Filter>Manifold.Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\PromptManager.h">
+      <Filter>Manifold.Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\Base64.h">
+      <Filter>Manifold.Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\StringUtils.h">
+      <Filter>Manifold.Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\Providers\ProviderTypes.h">
+      <Filter>Manifold.Core\Providers</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\Providers\IProvider.h">
+      <Filter>Manifold.Core\Providers</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\Providers\ProviderRegistry.h">
+      <Filter>Manifold.Core\Providers</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\Providers\HttpClient.h">
+      <Filter>Manifold.Core\Providers</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\Providers\GeminiProvider.h">
+      <Filter>Manifold.Core\Providers</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\Providers\OpenAIProvider.h">
+      <Filter>Manifold.Core\Providers</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\Providers\AnthropicProvider.h">
+      <Filter>Manifold.Core\Providers</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\Providers\OpenAICompatProvider.h">
+      <Filter>Manifold.Core\Providers</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\MCP\MCPTypes.h">
+      <Filter>Manifold.Core\MCP</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\MCP\MCPTransport.h">
+      <Filter>Manifold.Core\MCP</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\MCP\StdioTransport.h">
+      <Filter>Manifold.Core\MCP</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\MCP\SSETransport.h">
+      <Filter>Manifold.Core\MCP</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\MCP\MCPClient.h">
+      <Filter>Manifold.Core\MCP</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\Plugins\IPlugin.h">
+      <Filter>Manifold.Core\Plugins</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\Plugins\PluginContext.h">
+      <Filter>Manifold.Core\Plugins</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\Plugins\PluginTypes.h">
+      <Filter>Manifold.Core\Plugins</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.Core\Plugins\PluginManager.h">
+      <Filter>Manifold.Core\Plugins</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="App.xaml.cpp" />
+    <ClCompile Include="MainWindow.xaml.cpp" />
+    <ClCompile Include="Manifold.Core\ProcessManager.cpp">
+      <Filter>Manifold.Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Manifold.Core\ScopedHandle.cpp">
+      <Filter>Manifold.Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Manifold.Core\TerminalEmulator.cpp">
+      <Filter>Manifold.Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Manifold.Core\SettingsManager.cpp">
+      <Filter>Manifold.Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Manifold.Core\CredentialManager.cpp">
+      <Filter>Manifold.Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Manifold.Core\SessionManager.cpp">
+      <Filter>Manifold.Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Manifold.Core\PromptManager.cpp">
+      <Filter>Manifold.Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Manifold.Core\Providers\ProviderRegistry.cpp">
+      <Filter>Manifold.Core\Providers</Filter>
+    </ClCompile>
+    <ClCompile Include="Manifold.Core\Providers\HttpClient.cpp">
+      <Filter>Manifold.Core\Providers</Filter>
+    </ClCompile>
+    <ClCompile Include="Manifold.Core\Providers\GeminiProvider.cpp">
+      <Filter>Manifold.Core\Providers</Filter>
+    </ClCompile>
+    <ClCompile Include="Manifold.Core\Providers\OpenAIProvider.cpp">
+      <Filter>Manifold.Core\Providers</Filter>
+    </ClCompile>
+    <ClCompile Include="Manifold.Core\Providers\AnthropicProvider.cpp">
+      <Filter>Manifold.Core\Providers</Filter>
+    </ClCompile>
+    <ClCompile Include="Manifold.Core\Providers\OpenAICompatProvider.cpp">
+      <Filter>Manifold.Core\Providers</Filter>
+    </ClCompile>
+    <ClCompile Include="Manifold.Core\MCP\StdioTransport.cpp">
+      <Filter>Manifold.Core\MCP</Filter>
+    </ClCompile>
+    <ClCompile Include="Manifold.Core\MCP\SSETransport.cpp">
+      <Filter>Manifold.Core\MCP</Filter>
+    </ClCompile>
+    <ClCompile Include="Manifold.Core\MCP\MCPClient.cpp">
+      <Filter>Manifold.Core\MCP</Filter>
+    </ClCompile>
+    <ClCompile Include="Manifold.Core\Plugins\PluginManager.cpp">
+      <Filter>Manifold.Core\Plugins</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="MainWindow.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="MainWindow.idl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\LockScreenLogo.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SplashScreen.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square150x150Logo.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square44x44Logo.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\StoreLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Wide310x150Logo.scale-200.png">
+      <Filter>Assets</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="app.manifest" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(WindowsPackageType)'!='None' and Exists('Package.appxmanifest')">
+    <AppxManifest Include="Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,98 @@
+#app {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+  width: 100vw;
+}
+
+#tab-bar {
+  height: 42px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  gap: 2px;
+  overflow-x: auto;
+  flex-shrink: 0;
+}
+
+#main-area {
+  display: flex;
+  overflow: hidden;
+  min-height: 0;
+}
+
+#side-panel {
+  width: 240px;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+#side-panel.collapsed { display: none; }
+
+#tab-content {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+#tab-content > .tab-pane {
+  position: absolute;
+  inset: 0;
+  overflow: auto;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+#tab-content > .tab-pane.active { display: flex; flex-direction: column; opacity: 1; }
+
+#input-bar {
+  border-top: 1px solid var(--border);
+  background: var(--bg-primary);
+  flex-shrink: 0;
+}
+#input-bar.hidden { display: none; }
+
+/* Confirmation dialog */
+.confirm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 300;
+}
+.confirm-dialog {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: var(--shadow);
+}
+.confirm-message {
+    margin: 0 0 16px;
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+.confirm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+.confirm-ok {
+    background: var(--accent) !important;
+    color: var(--accent-text) !important;
+}
+
+/* Disabled buttons */
+.btn-sm:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: default;
+}

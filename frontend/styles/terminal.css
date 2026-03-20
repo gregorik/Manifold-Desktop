@@ -1,0 +1,46 @@
+.terminal-pane {
+  background: var(--bg-primary);
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.terminal-grid {
+  flex: 1;
+  font-family: 'Cascadia Code', 'Consolas', 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.2;
+  padding: 4px;
+  overflow: hidden;
+  cursor: text;
+  white-space: pre;
+  outline: none;
+}
+
+.terminal-row {
+  height: 1.2em;
+}
+
+.terminal-cursor {
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.terminal-selection {
+  background: var(--accent-transparent);
+}
+
+.terminal-row-selected {
+    background: var(--accent-transparent);
+}
+.terminal-row-copied {
+    animation: copy-flash 300ms ease;
+}
+@keyframes copy-flash {
+    0% { background: var(--accent); }
+    100% { background: var(--accent-transparent); }
+}
