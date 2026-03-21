@@ -103,4 +103,4 @@ msbuild ManifoldDesktop.vcxproj /p:Configuration=Release /p:Platform=x64
 
 
 
-ell, C++20 backend, ES6 module frontend, nlohmann/json, ConPTY.
+Using C++20 backend, ES6 module frontend, nlohmann/json, ConPTY.
