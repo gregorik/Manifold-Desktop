@@ -2,20 +2,21 @@
 
 Open-source multi-provider AI chat client for Windows.
 
+![Mani0](https://github.com/user-attachments/assets/cb1539e6-4eab-4a73-9fba-d5fd8cc5a764)
+
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Platform: Windows 10+](https://img.shields.io/badge/Platform-Windows%2010%2B-0078D4.svg)](#prerequisites)
 [![Language: C++20](https://img.shields.io/badge/Language-C%2B%2B20-00599C.svg)](#architecture)
 [![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-green.svg)](https://github.com/gregorik/Manifold-Desktop/releases/tag/v0.2.0)
-
-![Screenshot](docs/screenshot.png)
-
-*(Screenshot coming soon)*
 
 Manifold Desktop is a native Windows desktop client that lets you chat with multiple AI providers through a single unified interface. Instead of juggling separate tabs/apps for ChatGPT, Claude, Gemini, and local models, you use one app with one conversation history, one settings panel, and the ability to switch providers mid-conversation or compare them side-by-side.
 
 > **Status:** Experimental -- not production-ready. Feedback and contributions welcome.
 
 ## Features
+
+![Mani1](https://github.com/user-attachments/assets/0c7a7564-80c2-457a-8db2-c6f9522e1331)
 
 - **Multi-provider support** -- Gemini, OpenAI, Anthropic, Ollama, and any OpenAI-compatible endpoint
 - **Side-by-side model comparison** -- stream responses from two models in parallel
