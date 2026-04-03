@@ -12,7 +12,7 @@ Open-source multi-provider AI chat client for Windows.
 
 Manifold Desktop is a native Windows desktop client that lets you chat with multiple AI providers through a single unified interface. Instead of juggling separate tabs/apps for ChatGPT, Claude, Gemini, and local models, you use one app with one conversation history, one settings panel, and the ability to switch providers mid-conversation or compare them side-by-side.
 
-> **Status:** Experimental -- not production-ready. Feedback and contributions welcome.
+> **Status:** Experimental. Feedback and contributions welcome.
 
 ## Features
 
@@ -187,4 +187,4 @@ See [docs/contributing.md](docs/contributing.md) for setup instructions, code st
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE). Code by Andras Gregori @ GregOrigin.
