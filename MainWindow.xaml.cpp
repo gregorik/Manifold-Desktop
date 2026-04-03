@@ -130,6 +130,12 @@ namespace winrt::ManifoldDesktop::implementation
         m_providerRegistry.AddProvider(std::make_unique<OpenAIProvider>());
         m_providerRegistry.AddProvider(std::make_unique<AnthropicProvider>());
 
+        // Register proxy provider if configured
+        if (!m_currentSettings.proxyUrl.empty()) {
+            m_providerRegistry.AddProvider(std::make_unique<ProxyProvider>(
+                m_currentSettings.proxyUrl, m_currentSettings.deviceId));
+        }
+
         // Add user-configured OpenAI-compat providers from settings
         for (auto& [id, cfg] : m_currentSettings.providerConfigs) {
             if (cfg.enabled && !cfg.endpointUrl.empty()) {
@@ -427,6 +433,7 @@ namespace winrt::ManifoldDesktop::implementation
         else if (type == "CHAT_SEND")        HandleChatSend(payload);
         else if (type == "CHAT_CANCEL")      HandleChatCancel();
         else if (type == "LIST_PROVIDERS")   HandleListProviders();
+        else if (type == "CHECK_UPDATES")    HandleCheckForUpdates();
         else if (type == "LIST_MODELS")      HandleListModels(payload);
         else if (type == "VALIDATE_KEY")     HandleValidateKey(payload);
         else if (type == "TERMINAL_START")   HandleTerminalStart(payload);
@@ -864,6 +871,15 @@ namespace winrt::ManifoldDesktop::implementation
             });
         }
         PostMessageToWeb("PROVIDERS_LIST", providers);
+    }
+
+    void MainWindow::HandleCheckForUpdates()
+    {
+        PostMessageToWeb("UPDATE_AVAILABLE", {
+            {"currentVersion", Manifold::Core::VERSION_STRING},
+            {"latestVersion", Manifold::Core::VERSION_STRING},
+            {"updateAvailable", false}
+        });
     }
 
     void MainWindow::HandleListModels(const nlohmann::json& payload)

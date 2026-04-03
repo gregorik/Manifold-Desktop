@@ -15,6 +15,7 @@
 #include "Manifold.Core/Providers/OpenAIProvider.h"
 #include "Manifold.Core/Providers/AnthropicProvider.h"
 #include "Manifold.Core/Providers/OpenAICompatProvider.h"
+#include "Manifold.Core/Providers/ProxyProvider.h"
 #include "Manifold.Core/MCP/MCPClient.h"
 #include "Manifold.Core/Plugins/PluginManager.h"
 #include <WebView2.h>
@@ -101,6 +102,7 @@ namespace winrt::ManifoldDesktop::implementation
         void HandleChatSend(const nlohmann::json& payload);
         void HandleChatCancel();
         void HandleListProviders();
+        void HandleCheckForUpdates();
         void HandleListModels(const nlohmann::json& payload);
         void HandleValidateKey(const nlohmann::json& payload);
 

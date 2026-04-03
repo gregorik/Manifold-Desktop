@@ -1,106 +1,189 @@
-<h1>Manifold Desktop</h1>
-<p>Open-source multi-provider AI chat client for Windows.</p>
-<p><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT">
-<img src="https://img.shields.io/badge/Platform-Windows%2010%2B-0078D4.svg" alt="Platform: Windows 10+">
-<img src="https://img.shields.io/badge/Language-C%2B%2B20-00599C.svg" alt="Language: C++20"></p>
-<p><img src="docs/screenshot.png" alt="Screenshot"></p>
-<p><em>(Screenshot coming soon)</em></p>
+# Manifold Desktop
 
-Manifold Desktop is a native Windows desktop client that lets you chat with multiple AI providers through a single
-  unified interface. It is experimental and not production-ready at this point. Its core value proposition: Instead of juggling separate tabs/apps for ChatGPT, Claude, Gemini, and local models, you use
-  one app with one conversation history, one settings panel, and the ability to switch providers mid-conversation or
-  compare them side-by-side.
+Open-source multi-provider AI chat client for Windows.
 
-<h2>Features</h2>
-<ul>
-<li><strong>Multi-provider support</strong> -- Gemini, OpenAI, Anthropic, Ollama, and any OpenAI-compatible endpoint</li>
-<li><strong>Side-by-side model comparison</strong> -- stream responses from two models in parallel</li>
-<li><strong>Integrated terminal</strong> -- full ConPTY pseudo-console with ANSI rendering</li>
-<li><strong>MCP client</strong> -- Model Context Protocol support with stdio and SSE transports</li>
-<li><strong>Prompt library</strong> -- save and reuse system prompts across conversations</li>
-<li><strong>Session management</strong> -- save, load, search, export, and import chat sessions</li>
-<li><strong>Markdown export</strong> -- export conversations as <code>.md</code> files</li>
-<li><strong>Cost tracking</strong> -- per-conversation token usage and cost estimates</li>
-<li><strong>Plugin system</strong> -- extend functionality via DLL plugins with virtual host registration</li>
-<li><strong>Secure API key storage</strong> -- Windows Credential Manager (DPAPI) encryption</li>
-<li><strong>Keyboard shortcuts</strong><ul>
-<li><code>Ctrl+N</code> -- new chat</li>
-<li><code>Ctrl+T</code> -- new terminal</li>
-<li><code>Ctrl+W</code> -- close tab</li>
-<li><code>Ctrl+F</code> -- search sessions</li>
-<li><code>Ctrl+,</code> -- settings</li>
-<li><code>Ctrl+K</code> -- focus sidebar search</li>
-<li><code>Ctrl+1..9</code> -- switch tabs</li>
-</ul>
-</li>
-</ul>
-<h2>Quick Start</h2>
-<h3>Prerequisites</h3>
-<ul>
-<li>Windows 10 version 1903 or later (x64)</li>
-<li><a href="https://visualstudio.microsoft.com/">Visual Studio 2022</a> or later with:<ul>
-<li><strong>Desktop development with C++</strong> workload</li>
-<li><strong>Universal Windows Platform development</strong> workload</li>
-<li>Windows 10 SDK (10.0.19041.0 or later)</li>
-</ul>
-</li>
-<li><a href="https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/">Windows App SDK 1.8</a></li>
-</ul>
-<h3>Clone and build</h3>
-<pre><code class="language-bash">git clone https://github.com/anthropic/manifold-desktop.git
-cd manifold-desktop
-</code></pre>
-<p>Restore NuGet packages and build:</p>
-<pre><code class="language-bash">msbuild ManifoldDesktop.vcxproj /p:Configuration=Release /p:Platform=x64 /restore
-</code></pre>
-<p>Run the output from <code>x64\Release\ManifoldDesktop\</code>.</p>
-<h2>Build from Source</h2>
-<h3>Debug build</h3>
-<pre><code class="language-bash">msbuild ManifoldDesktop.vcxproj /p:Configuration=Debug /p:Platform=x64 /restore
-</code></pre>
-<h3>Release build</h3>
-<pre><code class="language-bash">msbuild ManifoldDesktop.vcxproj /p:Configuration=Release /p:Platform=x64 /restore
-</code></pre>
-<p>The <code>/restore</code> flag triggers NuGet package restore automatically. If you prefer to restore separately:</p>
-<pre><code class="language-bash">nuget restore ManifoldDesktop.sln
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Platform: Windows 10+](https://img.shields.io/badge/Platform-Windows%2010%2B-0078D4.svg)](#prerequisites)
+[![Language: C++20](https://img.shields.io/badge/Language-C%2B%2B20-00599C.svg)](#architecture)
+[![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-green.svg)](https://github.com/gregorik/Manifold-Desktop/releases/tag/v0.2.0)
+
+![Screenshot](docs/screenshot.png)
+
+*(Screenshot coming soon)*
+
+Manifold Desktop is a native Windows desktop client that lets you chat with multiple AI providers through a single unified interface. Instead of juggling separate tabs/apps for ChatGPT, Claude, Gemini, and local models, you use one app with one conversation history, one settings panel, and the ability to switch providers mid-conversation or compare them side-by-side.
+
+> **Status:** Experimental -- not production-ready. Feedback and contributions welcome.
+
+## Features
+
+- **Multi-provider support** -- Gemini, OpenAI, Anthropic, Ollama, and any OpenAI-compatible endpoint
+- **Side-by-side model comparison** -- stream responses from two models in parallel
+- **Integrated terminal** -- full ConPTY pseudo-console with ANSI rendering
+- **MCP client** -- Model Context Protocol support with stdio and SSE transports
+- **Prompt library** -- save and reuse system prompts across conversations
+- **Session management** -- save, load, search, rename, export, and import chat sessions
+- **Markdown export** -- export conversations as `.md` files
+- **Cost tracking** -- per-conversation token usage and cost estimates
+- **Plugin system** -- extend functionality via DLL plugins with virtual host registration
+- **Secure API key storage** -- Windows Credential Manager (DPAPI) encryption
+- **Onboarding** -- guided setup overlay when no API keys are configured
+- **Window state persistence** -- remembers position, size, and maximized state across sessions
+- **Keyboard shortcuts**
+  - `Ctrl+N` -- new chat
+  - `Ctrl+T` -- new terminal
+  - `Ctrl+W` -- close tab
+  - `Ctrl+F` -- search sessions
+  - `Ctrl+,` -- settings
+  - `Ctrl+K` -- focus sidebar search
+  - `Ctrl+1..9` -- switch tabs
+
+## What's New in v0.2.0
+
+- **Ollama integration** -- chat with local models running on Ollama
+- **Side-by-side comparison** -- compare responses from two providers in parallel
+- **Prompt library** -- save, organize, and reuse system prompts
+- **Session search** -- full-text search across all saved conversations
+- **Markdown export** -- export any conversation to a `.md` file
+- **Cost tracking** -- per-conversation token counts and cost estimates
+- **Session export/import** -- portable JSON-based session backup and restore
+- **Auto-update check** -- notifies you when a new version is available
+- **Onboarding flow** -- first-run overlay guides API key configuration
+- **Window state persistence** -- remembers window position, size, and maximized state
+- **Inline session rename** -- double-click a session name to rename it
+- **Token estimates** -- live token count below the input textarea
+- **Loading indicators** -- visual feedback during AI response streaming
+- **Toast notifications** -- non-intrusive status messages
+- **Confirmation dialogs** -- safe tab close and session delete with confirmation prompts
+- **Accessibility** -- ARIA attributes, focus-visible indicators, and improved keyboard navigation
+- **Error recovery** -- inline error display with one-click retry
+
+See the [full changelog](#changelog) below.
+
+## Quick Start
+
+### Prerequisites
+
+- Windows 10 version 1903 or later (x64)
+- [Visual Studio 2022](https://visualstudio.microsoft.com/) or later with:
+  - **Desktop development with C++** workload
+  - **Universal Windows Platform development** workload
+  - Windows 10 SDK (10.0.19041.0 or later)
+- [Windows App SDK 1.8](https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/)
+
+### Clone and build
+
+```bash
+git clone https://github.com/gregorik/Manifold-Desktop.git
+cd Manifold-Desktop
+```
+
+Restore NuGet packages and build:
+
+```bash
+msbuild ManifoldDesktop.vcxproj /p:Configuration=Release /p:Platform=x64 /restore
+```
+
+Run the output from `x64\Release\ManifoldDesktop\`.
+
+## Build from Source
+
+### Debug build
+
+```bash
+msbuild ManifoldDesktop.vcxproj /p:Configuration=Debug /p:Platform=x64 /restore
+```
+
+### Release build
+
+```bash
+msbuild ManifoldDesktop.vcxproj /p:Configuration=Release /p:Platform=x64 /restore
+```
+
+The `/restore` flag triggers NuGet package restore automatically. If you prefer to restore separately:
+
+```bash
+nuget restore ManifoldDesktop.sln
 msbuild ManifoldDesktop.vcxproj /p:Configuration=Release /p:Platform=x64
-</code></pre>
-<p>You can also open <code>ManifoldDesktop.sln</code> in Visual Studio, which handles NuGet restore on build.</p>
-<h2>Architecture</h2>
-<p>Manifold Desktop is a two-process application:</p>
-<ul>
-<li><strong>C++/WinRT backend</strong> -- manages providers, terminal sessions, MCP connections, file I/O, and credential storage</li>
-<li><strong>WebView2 frontend</strong> -- vanilla JavaScript (ES6 modules) with no framework or build step</li>
-</ul>
-<p>The two layers communicate via a JSON message bridge (<code>postMessage</code> / <code>OnWebMessage</code>). Each provider implements the <code>IProvider</code> interface and is registered at startup through <code>ProviderRegistry</code>.</p>
-<p>See <a href="docs/architecture.md">docs/architecture.md</a> for a detailed breakdown.</p>
-<h2>Extending</h2>
-<h3>Adding a Provider</h3>
-<ol>
-<li>Create a class that implements <code>Manifold::Core::IProvider</code> (see <code>Manifold.Core/Providers/IProvider.h</code>).</li>
-<li>Implement all virtual methods: <code>Id()</code>, <code>DisplayName()</code>, <code>ListModels()</code>, <code>SendChat()</code>, <code>StreamChat()</code>, and <code>ValidateKey()</code>.</li>
-<li>Register an instance in <code>MainWindow</code>&#39;s constructor alongside the existing providers:</li>
-</ol>
-<pre><code class="language-cpp">m<em>providerRegistry.AddProvider(std::make</em>unique&lt;YourProvider&gt;());
-</code></pre>
-<ol start="4">
-<li>Rebuild. The new provider will appear in the frontend&#39;s provider dropdown automatically.</li>
-</ol>
-<h3>Adding an MCP Server</h3>
-<ol>
-<li>Open Settings (<code>Ctrl+,</code>) and navigate to the MCP section.</li>
-<li>Add a server with either:<ul>
-<li><strong>Stdio transport</strong> -- provide the command and arguments (e.g., <code>npx -y @modelcontextprotocol/server-filesystem /path</code>)</li>
-<li><strong>SSE transport</strong> -- provide the server URL (e.g., <code>http://localhost:8080/sse</code>)</li>
-</ul>
-</li>
-<li>Enable the server. Manifold will connect and discover available tools, which are then offered to AI providers that support tool use.</li>
-</ol>
-<h2>Contributing</h2>
-<p>See <a href="docs/contributing.md">docs/contributing.md</a> for setup instructions, code style, and PR guidelines.</p>
-<h2>License</h2>
-<p><a href="LICENSE">MIT</a></p>
+```
 
+You can also open `ManifoldDesktop.sln` in Visual Studio, which handles NuGet restore on build.
 
+## Architecture
 
-Using C++20 backend, ES6 module frontend, nlohmann/json, ConPTY.
+Manifold Desktop is a two-layer application:
+
+- **C++/WinRT backend** -- manages providers, terminal sessions, MCP connections, file I/O, and credential storage
+- **WebView2 frontend** -- vanilla JavaScript (ES6 modules) with no framework or build step
+
+The two layers communicate via a JSON message bridge (`postMessage` / `OnWebMessage`). Each provider implements the `IProvider` interface and is registered at startup through `ProviderRegistry`.
+
+See [docs/architecture.md](docs/architecture.md) for a detailed breakdown.
+
+## Extending
+
+### Adding a Provider
+
+1. Create a class that implements `Manifold::Core::IProvider` (see `Manifold.Core/Providers/IProvider.h`).
+2. Implement all virtual methods: `Id()`, `DisplayName()`, `ListModels()`, `SendChat()`, `StreamChat()`, and `ValidateKey()`.
+3. Register an instance in `MainWindow`'s constructor alongside the existing providers:
+
+```cpp
+m_providerRegistry.AddProvider(std::make_unique<YourProvider>());
+```
+
+4. Rebuild. The new provider will appear in the frontend's provider dropdown automatically.
+
+### Adding an MCP Server
+
+1. Open Settings (`Ctrl+,`) and navigate to the MCP section.
+2. Add a server with either:
+   - **Stdio transport** -- provide the command and arguments (e.g., `npx -y @modelcontextprotocol/server-filesystem /path`)
+   - **SSE transport** -- provide the server URL (e.g., `http://localhost:8080/sse`)
+3. Enable the server. Manifold will connect and discover available tools, which are then offered to AI providers that support tool use.
+
+## Changelog
+
+### v0.2.0 (2026-04-03)
+
+**New features:**
+- Ollama provider integration for local model support
+- Side-by-side model comparison mode
+- Prompt library with save/load/organize
+- Full-text session search
+- Markdown conversation export
+- Per-conversation cost tracking and token estimates
+- Session export/import (JSON format)
+- Auto-update check on launch
+- First-run onboarding overlay
+- Window position/size/maximized state persistence
+- Inline session rename (double-click)
+- Live token estimate below input textarea
+- Loading indicators during streaming
+- Toast notification system
+- Confirmation dialogs for destructive actions
+- Accessibility improvements (ARIA, focus-visible, keyboard nav)
+- Inline error display with retry
+
+**Bug fixes:**
+- Terminal theme variable consistency
+- Tab transition animations
+- Disabled button state styling
+
+### v0.1.0 (2026-01-27)
+
+- Initial release
+- Multi-provider support (Gemini, OpenAI, Anthropic, OpenAI-compatible)
+- Integrated ConPTY terminal
+- MCP client (stdio + SSE)
+- Plugin system
+- Secure credential storage
+- Session save/load
+
+## Contributing
+
+See [docs/contributing.md](docs/contributing.md) for setup instructions, code style, and PR guidelines.
+
+## License
+
+[MIT](LICENSE)

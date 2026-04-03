@@ -13,6 +13,17 @@ export function create(opts = {}) {
 
     bridge.on('SESSIONS_LOADED', data => { sessions = data; render(); });
     bridge.on('PROVIDERS_LIST', data => { providers = data; render(); });
+    bridge.on('UPDATE_AVAILABLE', data => {
+        if (!data.updateAvailable || !element) return;
+        const banner = document.createElement('div');
+        banner.className = 'update-banner';
+        banner.innerHTML = `Update available: v${esc(data.latestVersion)} <a href="#" class="update-link">Download</a>`;
+        banner.querySelector('.update-link').onclick = e => {
+            e.preventDefault();
+            if (data.downloadUrl) bridge.send('OPEN_EXTERNAL_URL', { url: data.downloadUrl });
+        };
+        element.insertBefore(banner, element.firstChild);
+    });
 
     bridge.send('LIST_SESSIONS');
     bridge.send('LIST_PROVIDERS');
@@ -36,6 +47,7 @@ function render() {
     header.className = 'home-header';
     header.innerHTML = `<h1>Manifold Desktop</h1><p>Multi-provider AI chat client</p>`;
     element.appendChild(header);
+    bridge.send('CHECK_UPDATES');
 
     // Onboarding overlay
     const noKeys = Object.keys(state.providerKeys).length === 0 ||
