@@ -1,0 +1,28 @@
+# Build outputs
+x64/
+ARM64/
+Win32/
+Debug/
+Release/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.ncb
+*.sdf
+*.opensdf
+*.opendb
+*.VC.db
+*.VC.VC.opendb
+ipch/
+
+# Generated files (regenerated on build)
+Generated Files/
+
+# NuGet packages (restored on build)
+packages/
+
+# OS files
+Thumbs.db
+.DS_Store

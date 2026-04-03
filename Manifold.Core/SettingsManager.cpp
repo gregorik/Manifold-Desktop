@@ -2,6 +2,7 @@
 #include "SettingsManager.h"
 #include <fstream>
 #include <ShlObj.h>
+#include <combaseapi.h>
 
 namespace Manifold::Core
 {
@@ -44,6 +45,8 @@ namespace Manifold::Core
             {"mcpServers", s.mcpServers},
             {"mcpServerEnabled", s.mcpServerEnabled},
             {"mcpServerPort", s.mcpServerPort},
+            {"proxyUrl", s.proxyUrl},
+            {"deviceId", s.deviceId},
             {"ollamaEndpoint", s.ollamaEndpoint}
         };
     }
@@ -64,6 +67,8 @@ namespace Manifold::Core
             s.mcpServers = j["mcpServers"].get<std::map<std::string, McpServerConfig>>();
         s.mcpServerEnabled = j.value("mcpServerEnabled", false);
         s.mcpServerPort = j.value("mcpServerPort", 9339);
+        s.proxyUrl = j.value("proxyUrl", "https://manifold-proxy.example.com");
+        s.deviceId = j.value("deviceId", "");
         s.ollamaEndpoint = j.value("ollamaEndpoint", "http://localhost:11434");
     }
 
@@ -85,11 +90,26 @@ namespace Manifold::Core
         std::filesystem::create_directories(dir);
     }
 
+    std::string SettingsManager::GenerateUUID()
+    {
+        GUID guid;
+        CoCreateGuid(&guid);
+        char buf[64];
+        snprintf(buf, sizeof(buf),
+            "%08lx-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x",
+            guid.Data1, guid.Data2, guid.Data3,
+            guid.Data4[0], guid.Data4[1], guid.Data4[2], guid.Data4[3],
+            guid.Data4[4], guid.Data4[5], guid.Data4[6], guid.Data4[7]);
+        return buf;
+    }
+
     AppSettings SettingsManager::Load()
     {
         AppSettings settings;
         if (m_settingsPath.empty() || !std::filesystem::exists(m_settingsPath))
         {
+            // Generate device ID on first launch
+            settings.deviceId = GenerateUUID();
             Save(settings);
             return settings;
         }
@@ -102,6 +122,12 @@ namespace Manifold::Core
             settings = j.get<AppSettings>();
         } catch (...) {
             // Corrupt file — use defaults
+        }
+
+        // Ensure device ID exists
+        if (settings.deviceId.empty()) {
+            settings.deviceId = GenerateUUID();
+            Save(settings);
         }
 
         return settings;

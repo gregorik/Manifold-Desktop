@@ -10,7 +10,7 @@
   <Identity
     Name="9182d8fb-a67d-48e8-a692-95dd0b0df2aa"
     Publisher="CN=ManifoldDesktop"
-    Version="1.0.0.0" />
+    Version="0.2.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="9182d8fb-a67d-48e8-a692-95dd0b0df2aa" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

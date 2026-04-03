@@ -42,6 +42,10 @@ namespace Manifold::Core
         bool mcpServerEnabled{ false };
         int mcpServerPort{ 9339 };
 
+        // New — proxy
+        std::string proxyUrl{ "https://manifold-proxy.example.com" };
+        std::string deviceId;  // UUID v4, populated on first Load()
+
         // Ollama
         std::string ollamaEndpoint{ "http://localhost:11434" };
     };
@@ -68,5 +72,6 @@ namespace Manifold::Core
     private:
         std::filesystem::path m_settingsPath;
         void EnsureDirectory();
+        static std::string GenerateUUID();
     };
 }

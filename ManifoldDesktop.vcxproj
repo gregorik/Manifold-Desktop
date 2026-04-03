@@ -146,6 +146,7 @@
     <ClInclude Include="Manifold.Core\Providers\OpenAIProvider.h" />
     <ClInclude Include="Manifold.Core\Providers\AnthropicProvider.h" />
     <ClInclude Include="Manifold.Core\Providers\OpenAICompatProvider.h" />
+    <ClInclude Include="Manifold.Core\Providers\ProxyProvider.h" />
     <ClInclude Include="Manifold.Core\MCP\MCPTypes.h" />
     <ClInclude Include="Manifold.Core\MCP\MCPTransport.h" />
     <ClInclude Include="Manifold.Core\MCP\StdioTransport.h" />
@@ -181,6 +182,7 @@
     <ClCompile Include="Manifold.Core\Providers\OpenAIProvider.cpp" />
     <ClCompile Include="Manifold.Core\Providers\AnthropicProvider.cpp" />
     <ClCompile Include="Manifold.Core\Providers\OpenAICompatProvider.cpp" />
+    <ClCompile Include="Manifold.Core\Providers\ProxyProvider.cpp" />
     <ClCompile Include="Manifold.Core\MCP\StdioTransport.cpp" />
     <ClCompile Include="Manifold.Core\MCP\SSETransport.cpp" />
     <ClCompile Include="Manifold.Core\MCP\MCPClient.cpp" />
