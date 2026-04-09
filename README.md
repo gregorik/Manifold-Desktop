@@ -14,6 +14,8 @@ Manifold Desktop is a native Windows desktop client that lets you chat with mult
 
 > **Status:** Experimental. Feedback and contributions welcome.
 
+*[This repository is a FOSS solution to a persistent problem in current LLM interface programming. 🟢 Currently available for B2B consulting and remote contract/Co-Dev integration (CET Timezone). [Contact form.](https://gregorigin.com/contact.html)]*
+
 ## Features
 
 ![Mani1](https://github.com/user-attachments/assets/0c7a7564-80c2-457a-8db2-c6f9522e1331)
